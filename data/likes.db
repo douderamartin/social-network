@@ -1,0 +1,14 @@
+{"userId":"l2QLXbN7qH8VKsGH","postId":"R4ZrARlK5sO2yVau","createdAt":{"$$date":1776313972827},"_id":"K3Lk4dHuPDtpC0Q0"}
+{"userId":"u6nP5RnwjBs9l34F","postId":"R4ZrARlK5sO2yVau","createdAt":{"$$date":1776313852827},"_id":"NkFNdpUgZqI08BlZ"}
+{"userId":"Dxp4H4evOBKj5ppW","postId":"HfngcfPUYmk0nCXR","createdAt":{"$$date":1776317332827},"_id":"RxD2FAlTOcckdrQZ"}
+{"userId":"0yB1n0jTMpM6AVJB","postId":"B005WSvx1ceBg7ZC","createdAt":{"$$date":1776319132827},"_id":"T20DGXUVaYrLe3hr"}
+{"userId":"u6nP5RnwjBs9l34F","postId":"FiPWcmKhwlTdG05f","createdAt":{"$$date":1776315652827},"_id":"Z9Z01YzfwboGBq7J"}
+{"userId":"Dxp4H4evOBKj5ppW","postId":"R4ZrARlK5sO2yVau","createdAt":{"$$date":1776313732827},"_id":"ZoDa4mimr0MRsTl6"}
+{"userId":"0yB1n0jTMpM6AVJB","postId":"FiPWcmKhwlTdG05f","createdAt":{"$$date":1776315532827},"_id":"b1mNlmbE5AaO9KKH"}
+{"$$indexCreated":{"fieldName":"userId","unique":false,"sparse":false}}
+{"$$indexCreated":{"fieldName":"postId","unique":false,"sparse":false}}
+{"$$indexCreated":{"fieldName":"userId"}}
+{"$$indexCreated":{"fieldName":"postId"}}
+{"$$deleted":true,"_id":"ZoDa4mimr0MRsTl6"}
+{"$$deleted":true,"_id":"NkFNdpUgZqI08BlZ"}
+{"$$deleted":true,"_id":"K3Lk4dHuPDtpC0Q0"}
