@@ -1,0 +1,6 @@
+{"firstName":"Anna","lastName":"Nováková","age":22,"gender":"female","username":"anna","password":"$2a$10$bTA3HSrUQNR1M8eHpMkLNOjsPIOrJel9DZ9jX4H7cg8QKi9hNLZ0m","avatar":null,"createdAt":{"$$date":1776320632820},"_id":"0yB1n0jTMpM6AVJB"}
+{"firstName":"Petr","lastName":"Svoboda","age":25,"gender":"male","username":"petr","password":"$2a$10$bTA3HSrUQNR1M8eHpMkLNOjsPIOrJel9DZ9jX4H7cg8QKi9hNLZ0m","avatar":null,"createdAt":{"$$date":1776320632822},"_id":"Dxp4H4evOBKj5ppW"}
+{"firstName":"Tomáš","lastName":"Kratochvíl","age":30,"gender":"male","username":"tomas","password":"$2a$10$bTA3HSrUQNR1M8eHpMkLNOjsPIOrJel9DZ9jX4H7cg8QKi9hNLZ0m","avatar":null,"createdAt":{"$$date":1776320632824},"_id":"l2QLXbN7qH8VKsGH"}
+{"firstName":"Lucie","lastName":"Dvořáčková","age":20,"gender":"female","username":"lucie","password":"$2a$10$bTA3HSrUQNR1M8eHpMkLNOjsPIOrJel9DZ9jX4H7cg8QKi9hNLZ0m","avatar":null,"createdAt":{"$$date":1776320632823},"_id":"u6nP5RnwjBs9l34F"}
+{"$$indexCreated":{"fieldName":"username","unique":true,"sparse":false}}
+{"$$indexCreated":{"fieldName":"username","unique":true}}

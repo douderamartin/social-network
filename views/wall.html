@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeď – SocialNet</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/wall" class="nav-brand"><span class="brand-logo-sm">SN</span> SocialNet</a>
+    <div class="nav-links">
+      <a href="/wall" class="nav-link active">🏠 Zeď</a>
+      <a href="/users" class="nav-link">👥 Uživatelé</a>
+      <span class="nav-user" id="nav-user"></span>
+      <button class="btn btn-sm btn-outline" id="logout-btn">Odhlásit</button>
+    </div>
+    <button class="nav-toggle" id="nav-toggle">☰</button>
+  </nav>
+
+  <main class="main-content">
+    <div class="wall-layout">
+      <!-- New post form -->
+      <div class="card new-post-card">
+        <h3>✍️ Nový příspěvek</h3>
+        <div id="post-error" class="alert alert-error hidden"></div>
+        <div class="form-group">
+          <input type="text" id="post-title" placeholder="Nadpis příspěvku" maxlength="200">
+        </div>
+        <div class="form-group">
+          <textarea id="post-text" placeholder="Co se vám honí hlavou?" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-outline btn-sm" id="image-pick-btn">📎 Přidat obrázek</button>
+          <input type="file" id="post-image" accept=".jpg,.jpeg,.png" class="file-input" style="display:none">
+          <span id="post-image-name" class="file-name"></span>
+          <img id="post-image-preview" class="post-img-preview hidden">
+        </div>
+        <button class="btn btn-primary" id="post-btn">Publikovat</button>
+      </div>
+
+      <!-- Feed -->
+      <div id="feed">
+        <div class="loading-spinner">Načítám příspěvky...</div>
+      </div>
+    </div>
+  </main>
+
+  <template id="post-tpl">
+    <article class="card post-card" data-id="">
+      <div class="post-header">
+        <a class="post-author-link" href="">
+          <img class="avatar post-avatar" src="" alt="">
+          <div>
+            <span class="post-author-name"></span>
+            <span class="post-date"></span>
+          </div>
+        </a>
+      </div>
+      <h3 class="post-title"></h3>
+      <p class="post-text"></p>
+      <img class="post-image hidden" src="" alt="">
+      <div class="post-actions">
+        <button class="btn-like">
+          <span class="like-icon">🤍</span>
+          <span class="like-count"></span> líbí se
+        </button>
+        <button class="btn-comments-toggle">
+          💬 <span class="comments-count"></span> komentářů
+        </button>
+      </div>
+      <div class="likes-list hidden"></div>
+      <div class="comments-section hidden">
+        <div class="comments-list"></div>
+        <div class="comment-form">
+          <input type="text" class="comment-input" placeholder="Napište komentář...">
+          <button class="btn btn-sm btn-primary comment-submit">Odeslat</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/posts.js"></script>
+  <script src="/js/wall.js"></script>
+</body>
+</html>

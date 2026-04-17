@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil – SocialNet</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/wall" class="nav-brand"><span class="brand-logo-sm">SN</span> SocialNet</a>
+    <div class="nav-links">
+      <a href="/wall" class="nav-link">🏠 Zeď</a>
+      <a href="/users" class="nav-link">👥 Uživatelé</a>
+      <span class="nav-user" id="nav-user"></span>
+      <button class="btn btn-sm btn-outline" id="logout-btn">Odhlásit</button>
+    </div>
+    <button class="nav-toggle" id="nav-toggle">☰</button>
+  </nav>
+
+  <main class="main-content">
+    <div id="profile-section" class="loading-spinner">Načítám profil...</div>
+    <div id="posts-section" class="hidden">
+      <h3 class="section-title">📝 Vlastní příspěvky</h3>
+      <div id="own-posts"></div>
+      <h3 class="section-title">❤️ Příspěvky, které lajkoval/a nebo komentoval/a</h3>
+      <div id="activity-posts"></div>
+    </div>
+  </main>
+
+  <template id="post-tpl">
+    <article class="card post-card" data-id="">
+      <div class="post-header">
+        <a class="post-author-link" href="">
+          <img class="avatar post-avatar" src="" alt="">
+          <div>
+            <span class="post-author-name"></span>
+            <span class="post-date"></span>
+          </div>
+        </a>
+      </div>
+      <h3 class="post-title"></h3>
+      <p class="post-text"></p>
+      <img class="post-image hidden" src="" alt="">
+      <div class="post-actions">
+        <button class="btn-like">
+          <span class="like-icon">🤍</span>
+          <span class="like-count"></span> líbí se
+        </button>
+        <button class="btn-comments-toggle">
+          💬 <span class="comments-count"></span> komentářů
+        </button>
+      </div>
+      <div class="likes-list hidden"></div>
+      <div class="comments-section hidden">
+        <div class="comments-list"></div>
+        <div class="comment-form">
+          <input type="text" class="comment-input" placeholder="Napište komentář...">
+          <button class="btn btn-sm btn-primary comment-submit">Odeslat</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/posts.js"></script>
+  <script>
+    loadCurrentUser();
+    const userId = window.location.pathname.split('/').pop();
+
+    fetch(`/api/users/${userId}`).then(r => r.json()).then(data => {
+      if (data.error) { document.getElementById('profile-section').textContent = data.error; return; }
+      const { user, ownPosts, activityPosts } = data;
+
+      document.title = `${user.firstName} ${user.lastName} – SocialNet`;
+      document.getElementById('profile-section').outerHTML = `
+        <div class="profile-card card">
+          <img class="avatar avatar-xl" src="${user.avatar || '/img/default-avatar.svg'}" alt="${user.firstName}">
+          <div class="profile-info">
+            <h2>${user.firstName} ${user.lastName}</h2>
+            <p>${user.age} let · ${user.gender === 'male' ? 'Muž' : user.gender === 'female' ? 'Žena' : 'Jiné'}</p>
+          </div>
+        </div>
+      `;
+      document.getElementById('posts-section').classList.remove('hidden');
+
+      const ownEl = document.getElementById('own-posts');
+      if (ownPosts.length) ownPosts.forEach(p => ownEl.appendChild(buildPost(p)));
+      else ownEl.innerHTML = '<p class="text-muted">Žádné vlastní příspěvky.</p>';
+
+      const actEl = document.getElementById('activity-posts');
+      if (activityPosts.length) activityPosts.forEach(p => actEl.appendChild(buildPost(p)));
+      else actEl.innerHTML = '<p class="text-muted">Žádná aktivita na cizích příspěvcích.</p>';
+
+      bindPostEvents();
+    }).catch(() => {
+      document.getElementById('profile-section').textContent = 'Chyba načítání profilu.';
+    });
+  </script>
+</body>
+</html>

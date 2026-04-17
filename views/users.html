@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uživatelé – SocialNet</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/wall" class="nav-brand"><span class="brand-logo-sm">SN</span> SocialNet</a>
+    <div class="nav-links">
+      <a href="/wall" class="nav-link">🏠 Zeď</a>
+      <a href="/users" class="nav-link active">👥 Uživatelé</a>
+      <span class="nav-user" id="nav-user"></span>
+      <button class="btn btn-sm btn-outline" id="logout-btn">Odhlásit</button>
+    </div>
+    <button class="nav-toggle" id="nav-toggle">☰</button>
+  </nav>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h2>👥 Registrovaní uživatelé</h2>
+    </div>
+    <div id="users-grid" class="users-grid">
+      <div class="loading-spinner">Načítám uživatele...</div>
+    </div>
+  </main>
+
+  <script src="/js/main.js"></script>
+  <script>
+    loadCurrentUser();
+
+    fetch('/api/users').then(r => r.json()).then(users => {
+      const grid = document.getElementById('users-grid');
+      if (!users.length) { grid.innerHTML = '<p>Žádní uživatelé.</p>'; return; }
+      grid.innerHTML = users.map(u => `
+        <a href="/users/${u.id}" class="user-card card">
+          <img class="avatar avatar-lg" src="${u.avatar || '/img/default-avatar.svg'}" alt="${u.firstName}">
+          <div class="user-card-info">
+            <strong>${u.lastName} ${u.firstName}</strong>
+            <span>${u.age} let · ${genderLabel(u.gender)}</span>
+          </div>
+        </a>
+      `).join('');
+    }).catch(() => {
+      document.getElementById('users-grid').innerHTML = '<p class="text-error">Chyba načítání</p>';
+    });
+
+    function genderLabel(g) {
+      return g === 'male' ? 'Muž' : g === 'female' ? 'Žena' : 'Jiné';
+    }
+  </script>
+</body>
+</html>
